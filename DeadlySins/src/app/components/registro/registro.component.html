@@ -1,0 +1,74 @@
+<h4>Formularios <small>data</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
+
+    <div>
+        <div class="form-group row" [ngClass]="{'was-validated': forma.get('familia').valid}">
+            <label class="col-2 col-form-label">Familia</label>
+            <div class="col-8">
+                <input class="form-control is-invalid" type="text" placeholder="familia" formControlName="familia">
+                <div *ngIf="forma.controls['familia'].errors?.required" class="invalid-feedback ">
+                    Debes ingresar el nombre de la familia
+                </div>
+                <div *ngIf="forma.controls['familia'].errors?.minlength" class="invalid-feedback">
+                    La familia debe tener por lo menos 3 caracteres.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Correo</label>
+            <div class="col-md-8">
+
+                <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+                <div *ngIf="!forma.controls['correo'].value" class="form-control-feedback">
+                    El correo es necesario
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{'was-validated': forma.get('password').valid}">
+            <label class="col-2 col-form-label">Password</label>
+            <div class="col-8">
+                <input class="form-control is-invalid" type="password" placeholder="password" formControlName="password">
+                <div *ngIf="forma.controls['password'].errors?.required" class="invalid-feedback ">
+                    Debes ingresar tu password
+                </div>
+                <div *ngIf="forma.controls['password'].errors?.minlength" class="invalid-feedback">
+                    El password debe tener por lo menos 7 caracteres.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{'was-validated': forma.get('telefono').valid}">
+            <label class="col-2 col-form-label">Telefono</label>
+            <div class="col-8">
+                <input class="form-control is-invalid" type="text" placeholder="telefono" formControlName="telefono">
+                <div *ngIf="forma.controls['telefono'].errors?.required" class="invalid-feedback ">
+                    Debes ingresar tu telefono
+                </div>
+                <div *ngIf="forma.controls['telefono'].errors?.minlength" class="invalid-feedback">
+                    El telefono debe tener 9 numeros.
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+
+            <button type="submit" class="btn btn-outline-primary" [disabled]="!forma.valid">
+        Guardar
+      </button>
+        </div>
+    </div>
+
+    {{forma.valid}}
+
+
+</form>
